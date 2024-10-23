@@ -1,0 +1,13 @@
+<!-- templates/inventory/add_inventory.html -->
+{% extends 'inventory/base.html' %}
+
+{% block title %}Add Inventory Item{% endblock %}
+
+{% block content %}
+<h1>Add Inventory Item</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Add Item</button>
+</form>
+{% endblock %}

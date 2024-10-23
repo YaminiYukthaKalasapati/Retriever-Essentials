@@ -1,0 +1,13 @@
+{% extends 'inventory/base.html' %}
+
+{% block title %}Admin Page{% endblock %}
+
+{% block content %}
+    <h1>Admin Page</h1>
+    <p>Login to manage the inventory items.</p>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Add Item</button>
+    </form>
+{% endblock %}

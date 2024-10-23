@@ -1,0 +1,16 @@
+{% extends 'inventory/base.html' %}
+
+{% block title %}Search Results{% endblock %}
+
+{% block content %}
+    <h1>Search Results</h1>
+    {% if results %}
+        <ul>
+            {% for item in results %}
+                <li>{{ item.name }} - {{ item.description }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No results found for your query.</p>
+    {% endif %}
+{% endblock %}

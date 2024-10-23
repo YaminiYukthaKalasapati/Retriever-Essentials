@@ -1,0 +1,73 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Page</title>
+    <link rel="stylesheet" href="{% static 'css/inventory.css' %}">
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo-container">
+            <a href="https://my.umbc.edu" target="_blank">
+                <img src="{% static 'images/myumbc_logo.png' %}" alt="myUMBC Logo" class="logo-image">
+            </a>
+            <a href="https://retrieveressentials.umbc.edu" target="_blank">
+                <img src="{% static 'images/retriever_essentials_logo.png' %}" alt="Retriever Essentials Logo" class="re-logo">
+            </a>
+        </div>
+        <nav>
+            <ul class="menu">
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'blog' %}">Blog</a></li>
+                <li><a href="{% url 'inventory' %}">Inventory</a></li>
+                <li><a href="{% url 'events' %}">Events</a></li>
+                <li><a href="{% url 'admin_page' %}">Admin</a></li>
+            </ul>
+            <form class="search-form" action="{% url 'search_inventory' %}" method="GET">
+                <input type="text" name="q" placeholder="Search Inventory">
+                <button type="submit">Search</button>
+            </form>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Welcome to the Inventory Page</h1>
+        <p>This is where you can search and view the inventory items available.</p>
+        <div class="dropdown-container">
+            <div class="dropdown">
+                <button class="dropbtn">Dairy Items</button>
+                <div class="dropdown-content">
+                    <a href="#">Milk</a>
+                    <a href="#">Cheese</a>
+                    <a href="#">Yogurt</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="dropbtn">Meat</button>
+                <div class="dropdown-content">
+                    <a href="#">Chicken</a>
+                    <a href="#">Beef</a>
+                    <a href="#">Pork</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="dropbtn">Fruits</button>
+                <div class="dropdown-content">
+                    <a href="#">Apple</a>
+                    <a href="#">Banana</a>
+                    <a href="#">Orange</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <h2>Contact Us</h2>
+        <p>Email: retrieveressentials@umbc.edu</p>
+        <p>Phone: (410) 455-5555</p>
+        <p>© 2024 Retriever Essentials</p>
+    </footer>
+</body>
+</html>

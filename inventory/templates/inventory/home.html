@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SYNA Solutions</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo-container">
+            <a href="https://my.umbc.edu" target="_blank">
+                <img src="{% static 'images/myumbc_logo.png' %}" alt="myUMBC Logo" class="logo-image">
+            </a>
+            <a href="https://retrieveressentials.umbc.edu" target="_blank">
+                <img src="{% static 'images/retriever_essentials_logo.png' %}" alt="Retriever Essentials Logo" class="re-logo">
+            </a>
+        </div>
+        <nav>
+            <ul class="menu">
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'blog' %}">Blog</a></li>
+                <li><a href="{% url 'inventory' %}">Inventory</a></li>
+                <li><a href="{% url 'events' %}">Events</a></li>
+                <li><a href="{% url 'admin_page' %}">Admin</a></li>
+            </ul>
+            <form class="search-form" action="{% url 'search_inventory' %}" method="GET">
+                <input type="text" name="q" placeholder="Search Inventory">
+                <button type="submit">Search</button>
+            </form>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Welcome to SYNA Solutions</h1>
+        <p>Our aim is to help UMBC members access essential food items and reduce food insecurity.</p>
+        <div class="image-gallery">
+            <img src="{% static 'images/image1.png' %}" alt="Food Image 1">
+            <img src="{% static 'images/image2.png' %}" alt="Food Image 2">
+            <img src="{% static 'images/image3.png' %}" alt="Food Image 3">
+        </div>
+    </main>
+
+    <footer class="footer">
+        <h2>Contact Us</h2>
+        <p>Email: synasolutions@umbc.edu</p>
+        <p>Phone: (410) 455-5555</p>
+        <p>© 2024 SYNA Solutions</p>
+    </footer>
+</body>
+</html>
