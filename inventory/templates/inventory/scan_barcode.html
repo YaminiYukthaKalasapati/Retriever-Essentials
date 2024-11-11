@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Barcode Scanner</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js"></script>
+</head>
+<body>
+    <h1>Barcode Scanner</h1>
+    <div id="interactive" class="viewport"></div>
+    <p id="result"></p>
+    
+    <script>
+        Quagga.init({
+            inputStream: {
+                type : "LiveStream",
+                target: document.querySelector('#interactive')    // Or '#yourElement' (optional)
+            },
+            decoder : {
+                readers : ["code_128_reader"] // Specify your barcode type here
+            }
+        }, function(err) {
+            if (err) {
+                console.log(err);
+                return;
+            }
+            console.log("Initialization finished. Ready to start");
+            Quagga.start();
+        });
+
+        Quagga.onDetected(function(data) {
+            const barcode = data.codeResult.code;
+            document.getElementById('result').innerText = "Scanned: " + barcode;
+
+            // Send barcode to the server for validation
+            fetch('/scan-barcode/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}' // CSRF token for Django
+                },
+                body: JSON.stringify({barcode: barcode})
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    alert('Item found: ' + data.item.name + ' Quantity: ' + data.item.quantity);
+                } else {
+                    alert(data.message);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

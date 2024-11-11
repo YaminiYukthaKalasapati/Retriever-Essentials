@@ -1,13 +1,22 @@
-<!-- templates/inventory/add_inventory.html -->
 {% extends 'inventory/base.html' %}
 
-{% block title %}Add Inventory Item{% endblock %}
+{% block title %}Add New Item{% endblock %}
 
 {% block content %}
-<h1>Add Inventory Item</h1>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Add Item</button>
-</form>
+    <h1>Add New Item</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Add Item</button>
+    </form>
+
+{% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+            <div class="alert {{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+    </div>
+{% endif %}
 {% endblock %}
+<!-- Add this to the bottom of add_inventory.html or the template where the barcode scanner is used -->
+<script src="{% static 'js/barcode_scanner.js' %}"></script>

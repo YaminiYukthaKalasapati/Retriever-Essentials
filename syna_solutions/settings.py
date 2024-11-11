@@ -55,7 +55,7 @@ ROOT_URLCONF = 'syna_solutions.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'inventory/templates'],  # Updated to point to your templates directory
+        'DIRS': [BASE_DIR / 'templates', BASE_DIR / 'inventory/templates'],  
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -124,4 +124,7 @@ STATIC_ROOT = BASE_DIR / 'inventory' / 'staticfiles'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
+#LOGIN_REDIRECT_URL = 'home'  # Redirect after login
+#LOGOUT_REDIRECT_URL = 'home'  # Redirect after logout
+APPEND_SLASH = True
+LOGIN_URL = '/admin/login/' 

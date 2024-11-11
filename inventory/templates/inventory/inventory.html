@@ -11,10 +11,10 @@
     <header class="navbar">
         <div class="logo-container">
             <a href="https://my.umbc.edu" target="_blank">
-                <img src="{% static 'images/myumbc_logo.png' %}" alt="myUMBC Logo" class="logo-image">
+                <img src="{% static 'images/myumbc_logo.jpg' %}" alt="myUMBC Logo" class="logo-image">
             </a>
             <a href="https://retrieveressentials.umbc.edu" target="_blank">
-                <img src="{% static 'images/retriever_essentials_logo.png' %}" alt="Retriever Essentials Logo" class="re-logo">
+                <img src="{% static 'images/retriever_essentials_logo.jpg' %}" alt="Retriever Essentials Logo" class="re-logo">
             </a>
         </div>
         <nav>
@@ -23,7 +23,7 @@
                 <li><a href="{% url 'blog' %}">Blog</a></li>
                 <li><a href="{% url 'inventory' %}">Inventory</a></li>
                 <li><a href="{% url 'events' %}">Events</a></li>
-                <li><a href="{% url 'admin_page' %}">Admin</a></li>
+                <li><a href="{% url 'admin:login' %}">Admin</a></li>
             </ul>
             <form class="search-form" action="{% url 'search_inventory' %}" method="GET">
                 <input type="text" name="q" placeholder="Search Inventory">
@@ -39,28 +39,35 @@
             <div class="dropdown">
                 <button class="dropbtn">Dairy Items</button>
                 <div class="dropdown-content">
-                    <a href="#">Milk</a>
-                    <a href="#">Cheese</a>
-                    <a href="#">Yogurt</a>
+                    {% for item in dairy_items %}
+                        <a href="#">{{ item.name }} - Qty: {{ item.quantity }} - ${{ item.price }}</a>
+                    {% empty %}
+                        <a href="#">No dairy items available</a>
+                    {% endfor %}
                 </div>
             </div>
             <div class="dropdown">
                 <button class="dropbtn">Meat</button>
                 <div class="dropdown-content">
-                    <a href="#">Chicken</a>
-                    <a href="#">Beef</a>
-                    <a href="#">Pork</a>
+                    {% for item in meat_items %}
+                        <a href="#">{{ item.name }} - Qty: {{ item.quantity }} - ${{ item.price }}</a>
+                    {% empty %}
+                        <a href="#">No meat items available</a>
+                    {% endfor %}
                 </div>
             </div>
             <div class="dropdown">
                 <button class="dropbtn">Fruits</button>
                 <div class="dropdown-content">
-                    <a href="#">Apple</a>
-                    <a href="#">Banana</a>
-                    <a href="#">Orange</a>
+                    {% for item in fruit_items %}
+                        <a href="#">{{ item.name }} - Qty: {{ item.quantity }} - ${{ item.price }}</a>
+                    {% empty %}
+                        <a href="#">No fruit items available</a>
+                    {% endfor %}
                 </div>
             </div>
         </div>
+ 
     </main>
 
     <footer class="footer">
@@ -71,3 +78,4 @@
     </footer>
 </body>
 </html>
+

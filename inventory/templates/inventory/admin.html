@@ -8,6 +8,14 @@
     <form method="POST">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Add Item</button>
+        <a href="{% url 'admin:login' %}"><button type="button">Add Item</button></a>
     </form>
 {% endblock %}
+
+{% if user.is_authenticated %}
+    <li><a href="{% url 'admin_page' %}">Admin</a></li>
+    <li><a href="{% url 'logout' %}">Logout</a></li>
+{% else %}
+    <li><a href="{% url 'login' %}">Login</a></li>
+{% endif %}
+
